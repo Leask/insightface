@@ -3,6 +3,7 @@ import argparse
 import cv2
 import numpy as np
 import torch
+from sklearn.metrics.pairwise import cosine_similarity
 
 from backbones import get_model
 
@@ -23,13 +24,16 @@ def inference(weight, name, img):
     net.load_state_dict(torch.load(weight))
     net.eval()
     feat = net(img).numpy()
-    print(feat)
+    return feat
+
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='PyTorch ArcFace Training')
-    parser.add_argument('--network', type=str, default='r50', help='backbone network')
+    parser.add_argument('--network', type=str,
+                        default='r50', help='backbone network')
     parser.add_argument('--weight', type=str, default='')
     parser.add_argument('--img', type=str, default=None)
     args = parser.parse_args()
-    inference(args.weight, args.network, args.img)
+    resp = inference(args.weight, args.network, args.img)
+    print(resp)

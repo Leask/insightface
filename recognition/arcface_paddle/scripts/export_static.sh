@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-python tools/export.py \
+python3 tools/export.py \
     --is_static True \
-    --export_type paddle \
+    --export_type onnx \
     --backbone FresResNet50 \
     --embedding_size 512 \
-    --checkpoint_dir MS1M_v3_arcface_static_128_fp16_0.1/FresResNet50/24 \
-    --output_dir MS1M_v3_arcface_static_128_fp16_0.1/FresResNet50/exported_model
+    --checkpoint_dir MS1M_v3_arcface/FresResNet50/24 \
+    --output_dir MS1M_v3_arcface/FresResNet50/exported_model_onnx

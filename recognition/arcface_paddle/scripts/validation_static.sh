@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-python tools/validation.py \
+python3 tools/validation.py \
     --is_static True \
     --backbone FresResNet50 \
     --embedding_size 512 \
-    --checkpoint_dir MS1M_v3_arcface_static_128_fp16_0.1/FresResNet50/24 \
+    --checkpoint_dir MS1M_v3_arcface/FresResNet50/24 \
     --data_dir MS1M_v3/ \
     --val_targets lfw,cfp_fp,agedb_30 \
     --batch_size 128

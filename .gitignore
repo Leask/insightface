@@ -101,3 +101,12 @@ ENV/
 .mypy_cache/
 
 .DS_Store
+
+# Added By @Leaskh {
+/concept_Tag/
+/recognition/arcface_paddle/MS1M_v2_arcface_MobileFaceNet_128_0.1/
+/recognition/arcface_paddle/MS1M_v3_arcface/
+/recognition/arcface_paddle/PaddleDetection/
+/recognition/arcface_torch/train_tmp/
+/recognition/arcface_torch/work_dirs/
+# }

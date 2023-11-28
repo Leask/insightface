@@ -12,30 +12,42 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-python -m paddle.distributed.launch --gpus=0,1,2,3,4,5,6,7 tools/train.py \
+# python -m paddle.distributed.launch --gpus=0,1,2,3,4,5,6,7 tools/train.py \
+#     --config_file configs/ms1mv3_r50.py \
+#     --is_static True \
+#     --backbone FresResNet50 \
+#     --classifier LargeScaleClassifier \
+#     --embedding_size 512 \
+#     --model_parallel True \
+#     --dropout 0.0 \
+#     --sample_ratio 0.1 \
+#     --loss ArcFace \
+#     --batch_size 128 \
+#     --dataset MS1M_v3 \
+#     --num_classes 93431 \
+#     --data_dir MS1M_v3/ \
+#     --label_file MS1M_v3/label.txt \
+#     --is_bin False \
+#     --log_interval_step 100 \
+#     --validation_interval_step 2000 \
+#     --fp16 True \
+#     --use_dynamic_loss_scaling True \
+#     --init_loss_scaling 27648.0 \
+#     --num_workers 8 \
+#     --train_unit 'epoch' \
+#     --warmup_num 0 \
+#     --train_num 25 \
+#     --decay_boundaries "10,16,22" \
+#     --output MS1M_v3_arcface_static_0.1
+
+python3 tools/train.py \
     --config_file configs/ms1mv3_r50.py \
-    --is_static True \
-    --backbone FresResNet50 \
-    --classifier LargeScaleClassifier \
     --embedding_size 512 \
-    --model_parallel True \
-    --dropout 0.0 \
-    --sample_ratio 0.1 \
+    --sample_ratio 1.0 \
     --loss ArcFace \
-    --batch_size 128 \
+    --batch_size 64 \
     --dataset MS1M_v3 \
     --num_classes 93431 \
-    --data_dir MS1M_v3/ \
-    --label_file MS1M_v3/label.txt \
-    --is_bin False \
-    --log_interval_step 100 \
-    --validation_interval_step 2000 \
-    --fp16 True \
-    --use_dynamic_loss_scaling True \
-    --init_loss_scaling 27648.0 \
-    --num_workers 8 \
-    --train_unit 'epoch' \
-    --warmup_num 0 \
-    --train_num 25 \
-    --decay_boundaries "10,16,22" \
-    --output MS1M_v3_arcface_static_0.1
+    --data_dir /home/leask/Documents/kip/concept_tag/02_processed_02/ \
+    --label_file /home/leask/Documents/kip/concept_tag/02_processed_02/label.txt \
+    --fp16 False
