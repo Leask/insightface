@@ -22,8 +22,10 @@ import numpy as np
 
 sys.path.insert(0, os.path.abspath('.'))
 
+
 def str2bool(v):
-    return v.lower() in ("True","true", "t", "1")
+    return v.lower() in ("True", "true", "t", "1")
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Paddle Face Predictor')
@@ -43,7 +45,8 @@ def parse_args():
     parser.add_argument(
         "--onnx_file", type=str, required=False, help="onnx model filename")
     parser.add_argument("--image_path", type=str, help="path to test image")
-    parser.add_argument("--benchmark", type=str2bool, default=False, help="Is benchmark mode")
+    parser.add_argument("--benchmark", type=str2bool,
+                        default=False, help="Is benchmark mode")
     # params for paddle inferece engine
     parser.add_argument("--use_gpu", type=str2bool, default=True)
     parser.add_argument("--ir_optim", type=str2bool, default=True)
@@ -56,6 +59,7 @@ def parse_args():
     parser.add_argument("--cpu_threads", type=int, default=10)
     args = parser.parse_args()
     return args
+
 
 def get_infer_gpuid():
     cmd = "nvidia-smi"
@@ -101,11 +105,11 @@ def init_paddle_inference_config(args):
             max_input_shape = {"x": [1, 3, 1000, 1000]}
             opt_input_shape = {"x": [1, 3, 112, 112]}
             config.set_trt_dynamic_shape_info(min_input_shape, max_input_shape,
-                                            opt_input_shape)
+                                              opt_input_shape)
 
     else:
         config.disable_gpu()
-        cpu_threads = args.cpu_threads if  hasattr(args, "cpu_threads") else 10
+        cpu_threads = args.cpu_threads if hasattr(args, "cpu_threads") else 10
         config.set_cpu_math_library_num_threads(cpu_threads)
         if args.enable_mkldnn:
             # cache 10 different shapes for mkldnn to avoid memory leak
@@ -135,10 +139,11 @@ def get_image_file_list(img_file):
     imgs_lists = sorted(imgs_lists)
     return imgs_lists
 
+
 def paddle_inference(args):
     import paddle.inference as paddle_infer
 
-    config =  init_paddle_inference_config(args)
+    config = init_paddle_inference_config(args)
     predictor = paddle_infer.create_predictor(config)
 
     input_names = predictor.get_input_names()
@@ -158,14 +163,13 @@ def paddle_inference(args):
             process_name=None,
             gpu_ids=0,
             time_keys=[
-                'preprocess_time', 'inference_time','postprocess_time'
+                'preprocess_time', 'inference_time', 'postprocess_time'
             ],
             warmup=0)
-        img = np.random.uniform(0, 255, [1, 3, 112,112]).astype(np.float32)
+        img = np.random.uniform(0, 255, [1, 3, 112, 112]).astype(np.float32)
         input_handle.copy_from_cpu(img)
         for i in range(10):
             predictor.run()
-
 
     img_list = get_image_file_list(args.image_path)
     for img_path in img_list:
@@ -195,10 +199,11 @@ def paddle_inference(args):
         if args.benchmark:
             autolog.times.stamp()
             autolog.times.end(stamp=True)
-            print('{}\t{}'.format(img_path,json.dumps(output_data.tolist())))
-        print('paddle inference result: ', output_data.shape)
+            print('{}\t{}'.format(img_path, json.dumps(output_data.tolist())))
+        print('paddle inference result: ', output_data.tolist, output_names)
     if args.benchmark:
         autolog.report()
+
 
 def onnx_inference(args):
     import onnxruntime

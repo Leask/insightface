@@ -45,7 +45,7 @@ def parser(add_help=True):
         "--det", action="store_true", help="Whether to detect.")
     parser.add_argument(
         "--rec", action="store_true", help="Whether to recognize.")
-    
+
     parser.add_argument(
         "--det_model",
         type=str,
@@ -570,9 +570,10 @@ class InsightFace(object):
         if print_info:
             print_config(args)
 
-        self.font_path = os.path.join(
-            os.path.abspath(os.path.dirname(__file__)),
-            "SourceHanSansCN-Medium.otf")
+        # self.font_path = os.path.join(
+        #     os.path.abspath(os.path.dirname(__file__)),
+        #     "SourceHanSansCN-Medium.otf")
+        self.font_path = '/home/leask/Documents/insightface/recognition/arcface_paddle/SourceHanSansCN-Medium.otf'
         self.args = args
 
         predictor_config = {
@@ -624,7 +625,7 @@ class InsightFace(object):
 
             text = "{} {:.4f}".format(label, score)
             th = sum(font.getmetrics())
-            tw = font.getsize(text)[0]
+            tw = font.getbbox(text)[2]
             start_y = max(0, ymin - th)
 
             draw.rectangle(

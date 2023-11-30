@@ -107,8 +107,12 @@ class LargeScaleClassifier(object):
             sampled_class_index.stop_gradient = True
             weight = paddle.gather(weight, sampled_class_index, axis=1)
 
-        norm_feature = paddle.fluid.layers.l2_normalize(total_feature, axis=1)
-        norm_weight = paddle.fluid.layers.l2_normalize(weight, axis=0)
+        norm_feature = paddle.nn.functional.normalize(
+            total_feature, axis=1, epsilon=1e-12)
+        # norm_feature = paddle.fluid.layers.l2_normalize(total_feature, axis=1)
+        norm_weight = paddle.nn.functional.normalize(
+            weight, axis=0, epsilon=1e-12)
+        # norm_weight = paddle.fluid.layers.l2_normalize(weight, axis=0)
 
         local_logit = paddle.matmul(norm_feature, norm_weight)
 

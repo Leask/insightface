@@ -18,6 +18,7 @@ import os
 import paddle
 import paddle.nn as nn
 
+
 class LargeScaleClassifier(nn.Layer):
     """
     Author: {Xiang An, Yang Xiao, XuHan Zhu} in DeepGlint,
@@ -81,7 +82,7 @@ class LargeScaleClassifier(nn.Layer):
             warnings.warn(
                 "Explicitly call the function paddle._C_ops.sparse_momentum is a temporary manner. "
                 "We will merge it to optimizer in the future, please don't follow.")
-            
+
             found_inf = paddle.logical_not(
                 paddle.all(paddle.isfinite(self._parameter_list[0].grad)))
             if found_inf:
@@ -144,8 +145,13 @@ class LargeScaleClassifier(nn.Layer):
         else:
             self.sub_weight = self.weight
 
-        norm_feature = paddle.fluid.layers.l2_normalize(total_feature, axis=1)
-        norm_weight = paddle.fluid.layers.l2_normalize(self.sub_weight, axis=0)
+        norm_feature = paddle.nn.functional.normalize(
+            total_feature, axis=1, epsilon=1e-12)
+        # norm_feature = paddle.fluid.layers.l2_normalize(total_feature, axis=1)
+        norm_weight = paddle.nn.functional.normalize(
+            self.sub_weight, axis=0, epsilon=1e-12)
+
+        # norm_weight = paddle.fluid.layers.l2_normalize(self.sub_weight, axis=0)
 
         local_logit = paddle.matmul(norm_feature, norm_weight)
 
