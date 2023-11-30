@@ -5,7 +5,7 @@
   <img src="https://insightface.ai/assets/img/custom/logo3.jpg" width="240"/>
 </div>
 
-InsightFace project is mainly maintained By [Jia Guo](mailto:guojia@gmail.com?subject=[GitHub]%20InsightFace%20Project) and [Jiankang Deng](https://jiankangdeng.github.io/). 
+InsightFace project is mainly maintained By [Jia Guo](mailto:guojia@gmail.com?subject=[GitHub]%20InsightFace%20Project) and [Jiankang Deng](https://jiankangdeng.github.io/).
 
 For all main contributors, please check [contributing](#contributing).
 
@@ -33,7 +33,7 @@ Both manual-downloading models from our github repo and auto-downloading models 
 
 **`2022-09-22`**: Now we have [web-demos](web-demos): [face-localization](http://demo.insightface.ai:7007/), [face-recognition](http://demo.insightface.ai:7008/), and [face-swapping](http://demo.insightface.ai:7009/).
 
-**`2022-08-12`**: We achieved Rank-1st of 
+**`2022-08-12`**: We achieved Rank-1st of
 [Perspective Projection Based Monocular 3D Face Reconstruction Challenge](https://tianchi.aliyun.com/competition/entrance/531961/introduction)
 of [ECCV-2022 WCPA Workshop](https://sites.google.com/view/wcpa2022), [paper](https://arxiv.org/abs/2208.07142) and [code](reconstruction/jmlr).
 
@@ -53,7 +53,7 @@ of [ECCV-2022 WCPA Workshop](https://sites.google.com/view/wcpa2022), [paper](ht
 
 ## Introduction
 
-[InsightFace](https://insightface.ai) is an open source 2D&3D deep face analysis toolbox, mainly based on PyTorch and MXNet. 
+[InsightFace](https://insightface.ai) is an open source 2D&3D deep face analysis toolbox, mainly based on PyTorch and MXNet.
 
 Please check our [website](https://insightface.ai) for detail.
 
@@ -127,7 +127,7 @@ We provide standard IJB and Megaface evaluation pipelines in [evaluation](recogn
 - Caffe: [arcface-caffe](https://github.com/xialuxi/arcface-caffe)
 - Caffe: [CombinedMargin-caffe](https://github.com/gehaocool/CombinedMargin-caffe)
 - Tensorflow: [InsightFace-tensorflow](https://github.com/luckycallor/InsightFace-tensorflow)
-- TensorRT: [wang-xinyu/tensorrtx](https://github.com/wang-xinyu/tensorrtx)  
+- TensorRT: [wang-xinyu/tensorrtx](https://github.com/wang-xinyu/tensorrtx)
 - TensorRT: [InsightFace-REST](https://github.com/SthPhoenix/InsightFace-REST)
 - ONNXRuntime C++: [ArcFace-ONNXRuntime](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ort/cv/glint_arcface.cpp)
 - ONNXRuntime Go: [arcface-go](https://github.com/jack139/arcface-go)
@@ -151,7 +151,7 @@ The supported methods are as follows:
 - [x] [SCRFD (Arxiv'2021)](detection/scrfd)
 - [x] [blazeface_paddle](detection/blazeface_paddle)
 
-[RetinaFace](detection/retinaface) is a practical single-stage face detector which is accepted by [CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/html/Deng_RetinaFace_Single-Shot_Multi-Level_Face_Localisation_in_the_Wild_CVPR_2020_paper.html). We provide training code, training dataset, pretrained models and evaluation scripts. 
+[RetinaFace](detection/retinaface) is a practical single-stage face detector which is accepted by [CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/html/Deng_RetinaFace_Single-Shot_Multi-Level_Face_Localisation_in_the_Wild_CVPR_2020_paper.html). We provide training code, training dataset, pretrained models and evaluation scripts.
 
 [SCRFD](detection/scrfd) is an efficient high accuracy face detection approach which is initialy described in [Arxiv](https://arxiv.org/abs/2105.04714). We provide an easy-to-use pipeline to train high efficiency face detectors with NAS supporting.
 
@@ -185,7 +185,7 @@ If you find *InsightFace* useful in your research, please consider to cite the f
 @inproceedings{ren2023pbidr,
   title={Facial Geometric Detail Recovery via Implicit Representation},
   author={Ren, Xingyu and Lattas, Alexandros and Gecer, Baris and Deng, Jiankang and Ma, Chao and Yang, Xiaokang},
-  booktitle={2023 IEEE 17th International Conference on Automatic Face and Gesture Recognition (FG)},  
+  booktitle={2023 IEEE 17th International Conference on Automatic Face and Gesture Recognition (FG)},
   year={2023}
  }
 
@@ -256,3 +256,9 @@ Main contributors:
 - [Xiang An](https://github.com/anxiangsir) ``anxiangsir[at]gmail.com``
 - [Jack Yu](https://github.com/szad670401) ``jackyu961127[at]gmail.com``
 - [Baris Gecer](https://barisgecer.github.io/) ``barisgecer[at]msn.com``
+
+## Tips:
+
+- [Cannot load cudnn shared library](https://github.com/PaddlePaddle/PaddleDetection/issues/7629)
+- [normalize API in new paddle versions](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/normalize_cn.html#normalize)
+- [numpy new float/cfloat](https://stackoverflow.com/questions/75147820/attributeerror-module-numpy-has-no-attribute-float-did-you-mean-cfloat?noredirect=1&lq=1)
